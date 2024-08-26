@@ -13,7 +13,8 @@
   "dependencies": {
     "@stripe/stripe-js": "^4.3.0",
     "@vueform/slider": "^2.1.10",
-    "@vueuse/core": "^11.0.3"
+    "@vueuse/core": "^11.0.3",
+    "nuxt-font-loader": "^2.3.5"
   },
   "devDependencies": {
     "@nuxt/icon": "^1.4.10",

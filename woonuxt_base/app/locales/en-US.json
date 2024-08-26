@@ -34,7 +34,8 @@
       "newsletter": "Newsletter",
       "customerService": "Customer Service",
       "processing": "Processing",
-      "readOnly": "Readonly"
+      "readOnly": "Readonly",
+      "information": "Information"
     },
     "account": {
       "changePassword": "Change Password",

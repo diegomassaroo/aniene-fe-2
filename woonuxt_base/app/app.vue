@@ -24,7 +24,7 @@ useHead({
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="">
     <AppHeader />
 
     <Transition name="slide-from-right">
@@ -48,8 +48,17 @@ useHead({
 <style lang="postcss">
 html,
 body {
-  @apply bg-gray-100 text-gray-900;
+  @apply bg-white;
   scroll-behavior: smooth;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+::selection {
+  @apply bg-blue text-white;
 }
 
 img {
@@ -198,5 +207,9 @@ img.skeleton {
   animation: skelaton 2000ms infinite cubic-bezier(0.4, 0, 0.2, 1);
   background-image: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
+}
+
+body, p {
+  font-family: 'MT Grotesque', Arial, sans-serif;
 }
 </style>

@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
-      link: [{ rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
+      link: [{ rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
     },
     pageTransition: { name: 'page', mode: 'default' },
   },
@@ -29,7 +29,7 @@ export default defineNuxtConfig({
 
   components: [{ path: resolve('./app/components'), pathPrefix: false }],
 
-  modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/image', '@nuxtjs/i18n'],
+  modules: ['woonuxt-settings', 'nuxt-font-loader', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/image', '@nuxtjs/i18n'],
 
   'graphql-client': {
     clients: {
@@ -81,5 +81,29 @@ export default defineNuxtConfig({
     langDir: 'locales',
     defaultLocale: 'en_US',
     strategy: 'no_prefix',
+  },
+
+  fontLoader: {
+    autoImport: true,
+    local: [
+      {
+        src: '/fonts/GrotesqueMTStd.woff2',
+        family: 'MT Grotesque',
+        weight: 'normal',
+        display: 'swap',
+        style: 'normal',
+        fallback: 'sans-serif',
+        variable: 'MTG',
+      },
+      {
+        src: '/fonts/GrotesqueMTStd-Italic.woff2',
+        family: 'MT Grotesque',
+        weight: 'normal',
+        display: 'swap',
+        style: 'italic',
+        fallback: 'sans-serif',
+        variable: 'MTGi',
+      },
+    ],
   },
 });

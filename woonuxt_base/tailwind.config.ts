@@ -9,6 +9,7 @@ export default <Partial<Config>>{
     },
     extend: {
       colors: {
+        blue: '#0000ff',
         primary: {
           light: '#AE7DDD',
           DEFAULT: process.env.PRIMARY_COLOR || '#7F54B2',
