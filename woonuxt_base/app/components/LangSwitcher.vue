@@ -1,13 +1,27 @@
 <script setup>
-const { locales, locale, setLocaleCookie } = useI18n();
+const { locale, setLocaleCookie } = useI18n();
 
-watch(locale, (newLocale) => {
-  if (newLocale) setLocaleCookie(newLocale);
-});
+const switchLocale = (newLocale) => {
+  locale.value = newLocale;
+  setLocaleCookie(newLocale);
+};
 </script>
 
+
 <template>
-  <select v-model="locale" aria-label="Language switcher" class="bg-white">
-    <option v-for="locale in locales" :key="locale" :value="locale.code" v-html="locale.name" />
-  </select>
+  <div class="relative inline-flex leading-none p-2.5 h-fit">
+    <button 
+      @click="switchLocale('en_US')"
+      :class="{ 'text-blue': locale === 'en_US', 'text-black': locale !== 'en_US' }"
+      class="hover:text-blue cursor-pointer">
+      EN
+    </button>
+    <span>&nbsp;/&nbsp;</span>
+    <button 
+      @click="switchLocale('it_IT')"
+      :class="{ 'text-blue': locale === 'it_IT', 'text-black': locale !== 'it_IT' }"
+      class="hover:text-blue cursor-pointer">
+      IT
+    </button>
+  </div>
 </template>

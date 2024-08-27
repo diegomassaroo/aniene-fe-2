@@ -211,5 +211,6 @@ img.skeleton {
 
 body, p {
   font-family: 'MT Grotesque', Arial, sans-serif;
+  @apply text-sm;
 }
 </style>

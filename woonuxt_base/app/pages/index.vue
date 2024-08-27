@@ -23,7 +23,7 @@ watch(
 );
 
 useSeoMeta({
-  title: `Home`,
+  title: `Aniene`,
   ogTitle: siteName,
   description: description,
   ogDescription: shortDescription,
