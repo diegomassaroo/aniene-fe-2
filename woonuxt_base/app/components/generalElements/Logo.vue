@@ -8,6 +8,7 @@ const faviconUrl = '/logo.svg';
 
 <template>
   <NuxtLink to="/">
-    <img :src="faviconUrl" alt="Logo" class="object-contain h-8 hover:fill-blue" />
+    <!-- <img :src="faviconUrl" alt="Logo" class="object-contain h-8 hover:fill-blue" /> -->
+     <h1 class="hover:text-blue">Aniene</h1>
   </NuxtLink>
 </template>

@@ -135,14 +135,14 @@ const disabledAddToCart = computed(() => {
                 type="number"
                 min="1"
                 aria-label="Quantity"
-                class="bg-white border rounded-lg flex text-left p-2.5 w-20 gap-4 items-center justify-center focus:outline-none" />
+                class="bg-white border rounded-lg flex text-left p-3.5 w-20 gap-4 items-center justify-center focus:outline-none" />
               <AddToCartButton class="flex-1 w-full md:max-w-xs" :disabled="disabledAddToCart" :class="{ loading: isUpdatingCart }" />
             </div>
             <a
               v-if="isExternalProduct && product.externalUrl"
               :href="product.externalUrl"
               target="_blank"
-              class="rounded-lg flex font-bold bg-gray-800 text-white text-center min-w-[150px] p-2.5 gap-4 items-center justify-center focus:outline-none">
+              class="rounded-lg flex font-bold bg-gray-800 text-white text-center min-w-[150px] p-3.5 gap-4 items-center justify-center focus:outline-none">
               {{ product?.buttonText || 'View product' }}
             </a>
           </form>

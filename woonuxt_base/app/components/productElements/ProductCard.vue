@@ -1,13 +1,15 @@
 <script setup lang="ts">
 const route = useRoute();
+
 const { storeSettings } = useAppConfig();
+const { arraysEqual, formatArray, checkForVariationTypeOfAny } = useHelpers();
+const { addToCart, isUpdatingCart } = useCart();
+const { t } = useI18n();
+
 const props = defineProps({
   node: { type: Object as PropType<Product>, required: true },
   index: { type: Number, default: 1 },
 });
-
-const imgWidth = 280;
-const imgHeight = Math.round(imgWidth * 1.125);
 
 // example: ?filter=pa_color[green,blue],pa_size[large]
 const filterQuery = ref(route.query?.filter as string);
@@ -37,28 +39,18 @@ const imagetoDisplay = computed<string>(() => {
 </script>
 
 <template>
-  <div class="relative group">
-    <NuxtLink v-if="node.slug" :to="`/product/${decodeURIComponent(node.slug)}`" :title="node.name">
-      <SaleBadge :node class="absolute top-2 right-2" />
-      <NuxtImg
-        v-if="imagetoDisplay"
-        :width="imgWidth"
-        :height="imgHeight"
-        :src="imagetoDisplay"
-        :alt="node.image?.altText || node.name || 'Product image'"
-        :title="node.image?.title || node.name"
-        :loading="index <= 3 ? 'eager' : 'lazy'"
-        :sizes="`sm:${imgWidth / 2}px md:${imgWidth}px`"
-        class="rounded-lg object-top object-cover w-full aspect-9/8"
-        placeholder
-        placeholder-class="blur-xl" />
-    </NuxtLink>
-    <div class="p-2">
-      <StarRating v-if="storeSettings.showReviews" :rating="node.averageRating" :count="node.reviewCount" />
-      <NuxtLink v-if="node.slug" :to="`/product/${decodeURIComponent(node.slug)}`" :title="node.name">
-        <h2 class="mb-2 font-light leading-tight group-hover:text-primary">{{ node.name }}</h2>
-      </NuxtLink>
-      <ProductPrice class="text-sm" :sale-price="node.salePrice" :regular-price="node.regularPrice" />
+  <div class="grid grid-cols-10">
+    <SwiperCard class="col-span-6" :main-image="node.image" :gallery="node.galleryImages!" />
+    <div class="col-span-4 p-3.5 pt-0.5">
+      <div>
+        <h3 class="absolute">{{ node.booknumber.number }}</h3>
+        <h3 class="pl-18">{{ node.name }}</h3>
+        <h3 class="pl-18">{{ node.bookauthor.author }}</h3>
+        <div class="text-body" v-html="node.shortDescription"></div>
+        <div class="text-body" v-html="node.description"></div>
+        <ProductPrice :sale-price="node.salePrice" :regular-price="node.regularPrice" />
+        <AddToCartButton />
+      </div>
     </div>
   </div>
 </template>

@@ -30,4 +30,10 @@ fragment SimpleProduct on SimpleProduct {
       databaseId
     }
   }
+  booknumber {
+    number
+  }
+  bookauthor {
+    author
+  }
 }

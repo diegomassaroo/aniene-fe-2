@@ -155,10 +155,6 @@ onMounted(() => {
   @apply bg-green-500;
 }
 
-.color-blue {
-  @apply bg-blue-500;
-}
-
 .color-red {
   @apply bg-red-500;
 }

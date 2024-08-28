@@ -3,8 +3,8 @@ const { toggleCart, cart } = useCart();
 </script>
 
 <template>
-  <div class="relative cursor-pointer inline-flex hover:text-blue p-2.5" title="Cart" @click="toggleCart">
-    <NuxtLink class="leading-none h-fit">{{ $t('messages.shop.cart') }}</NuxtLink>
+  <div class="relative cursor-pointer inline-flex hover:text-blue p-3.5" title="Cart" @click="toggleCart">
+    <NuxtLink class="leading-none leading-0 h-fit">{{ $t('messages.shop.cart') }}</NuxtLink>
     <ClientOnly>
       <Transition name="popIn" mode="out-in">
         <span

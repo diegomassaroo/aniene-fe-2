@@ -40,8 +40,6 @@ useHead({
     <Transition name="fade">
       <div v-if="isShowingCart || isShowingMobileMenu" class="bg-black opacity-25 inset-0 z-40 fixed" @click="closeCartAndMenu" />
     </Transition>
-
-    <AppFooter />
   </div>
 </template>
 
@@ -209,8 +207,29 @@ img.skeleton {
   background-size: 200% 100%;
 }
 
-body, p {
+body,
+p {
   font-family: 'MT Grotesque', Arial, sans-serif;
-  @apply text-sm;
+  font-size: 0.8rem;
+  line-height: 1rem;
+}
+
+h1 {
+  font-size: 2.65rem;
+  line-height: 1;
+  margin-bottom: -0.75rem;
+}
+
+h3, .text-body, .text-body > p {
+  font-size: 1.15rem;
+  line-height: 1.57rem;
+}
+
+.leading-0 {
+  margin-bottom: -0.25rem;
+}
+
+.pl-18 {
+  padding-left: 4.5rem;
 }
 </style>

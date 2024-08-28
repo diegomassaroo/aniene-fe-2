@@ -30,11 +30,15 @@ useSeoMeta({
   ogImage: siteImage,
   twitterCard: `summary_large_image`,
 });
+
+useHead({
+  titleTemplate: `Aniene`,
+});
 </script>
 
 <template>
   <main>
-    <div class="w-full px-2.5 pt-10">
+    <div class="w-full px-3.5 pt-10 pb-20">
       <ProductGrid />
     </div>
   </main>
