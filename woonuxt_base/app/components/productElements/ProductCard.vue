@@ -2,9 +2,6 @@
 const route = useRoute();
 
 const { storeSettings } = useAppConfig();
-const { arraysEqual, formatArray, checkForVariationTypeOfAny } = useHelpers();
-const { addToCart, isUpdatingCart } = useCart();
-const { t } = useI18n();
 
 const props = defineProps({
   node: { type: Object as PropType<Product>, required: true },
@@ -41,15 +38,19 @@ const imagetoDisplay = computed<string>(() => {
 <template>
   <div class="grid grid-cols-10">
     <SwiperCard class="col-span-6" :main-image="node.image" :gallery="node.galleryImages!" />
-    <div class="col-span-4 p-3.5 pt-0.5">
+    <div class="col-span-4 p-3.5 pt-0.5 gap-y-6 grid">
       <div>
-        <h3 class="absolute">{{ node.booknumber.number }}</h3>
+        <h3 class="absolute">{{ node.booknumber?.number }}</h3>
         <h3 class="pl-18">{{ node.name }}</h3>
-        <h3 class="pl-18">{{ node.bookauthor.author }}</h3>
-        <div class="text-body" v-html="node.shortDescription"></div>
+        <h3 class="pl-18">{{ node.bookauthor?.author }}</h3>
+        <div class="pl-18 text-body" v-html="node.shortDescription"></div>
+      </div>
+      <div>
         <div class="text-body" v-html="node.description"></div>
+      </div>
+      <div class="pl-18">
         <ProductPrice :sale-price="node.salePrice" :regular-price="node.regularPrice" />
-        <AddToCartButton />
+        <AddToCartButton :product-id="node.id" :disabled="disabledAddToCart" :class="{ loading: isUpdatingCart }" />
       </div>
     </div>
   </div>

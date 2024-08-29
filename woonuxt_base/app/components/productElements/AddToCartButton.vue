@@ -16,12 +16,11 @@ watch(cart, (val) => {
 <template>
   <button
     type="submit"
-    class="hover:text-blue text-body pl-18"
+    class="hover:text-blue text-body"
     :class="{ disabled: disabled }"
     :disabled="disabled"
     @click="isLoading = true">
     <span>{{ addToCartButtonText }}</span>
-    <LoadingIcon v-if="isLoading" stroke="4" size="12" color="#fff" />
   </button>
 </template>
 

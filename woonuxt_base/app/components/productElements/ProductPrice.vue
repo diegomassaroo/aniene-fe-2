@@ -8,7 +8,7 @@ const { regularPrice, salePrice } = defineProps<ProductPriceProps>();
 </script>
 
 <template>
-  <div v-if="regularPrice" class="flex text-body pl-18">
+  <div v-if="regularPrice" class="flex text-body">
     <span :class="{ 'text-gray-400 line-through font-normal': salePrice }" v-html="regularPrice" />
     <span v-if="salePrice" class="ml-2" v-html="salePrice" />
   </div>
