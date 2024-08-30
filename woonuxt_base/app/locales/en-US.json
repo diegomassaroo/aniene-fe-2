@@ -134,7 +134,8 @@
         "title": "No products found",
         "subText": "Try adjusting your search or filter to find what you're looking for.",
         "clearFiltersAndSearch": "Clear all filters and search"
-      }
+      },
+      "remove": "Remove"
     },
     "billing": {
       "billing": "Billing",

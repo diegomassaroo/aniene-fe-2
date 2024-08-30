@@ -4,14 +4,16 @@ const { isShowingSearch } = useSearching();
 
 <template>
   <header class="sticky top-0 z-40 bg-white">
-    <div class="p-3.5 grid grid-cols-10">
-      <div class="flex items-center col-span-6 ml-12">
+    <div class="p-3.5 flex md:grid md:grid-cols-10 justify-between md:justify-normal">
+      <div class="flex items-center md:col-span-6 md:ml-12">
         <!-- <MenuTrigger class="lg:hidden" /> -->
-        <Logo class="py-2.5 px-3.5" />
+        <Logo class="md:pt-2.5 md:px-3.5 md:pb-3.5" />
       </div>
-      <div class="col-span-4 flex gap-2.5 content-end flex-wrap">
+      <div class="md:col-span-4 grid md:flex gap-2.5 content-end md:flex-wrap">
         <LangSwitcher />
-        <NuxtLink to="/information" class="leading-none leading-0 h-fit p-3.5 hover:text-blue">{{ $t('messages.general.information') }}</NuxtLink>
+        <div class="relative inline-flex leading-none h-fit md:p-3.5">
+          <NuxtLink to="/information" class="hover:text-blue leading-0 h-fit justify-end md:justify-normal">{{ $t('messages.general.information') }}</NuxtLink>
+        </div>
         <CartTrigger />
       </div>
     </div>

@@ -9,7 +9,7 @@ const switchLocale = (newLocale) => {
 
 
 <template>
-  <div class="relative inline-flex leading-none p-3.5 h-fit">
+  <div class="relative inline-flex leading-none md:p-3.5 h-fit justify-end md:justify-normal">
     <button 
       @click="switchLocale('en_US')"
       :class="{ 'text-blue': locale === 'en_US', 'text-black': locale !== 'en_US' }"

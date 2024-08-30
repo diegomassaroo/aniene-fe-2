@@ -16,7 +16,7 @@ watch(cart, (val) => {
 <template>
   <button
     type="submit"
-    class="hover:text-blue text-body"
+    class="hover:text-black text-blue text-body"
     :class="{ disabled: disabled }"
     :disabled="disabled"
     @click="isLoading = true">
@@ -31,6 +31,6 @@ button {
 }
 
 button.disabled {
-  @apply cursor-not-allowed bg-gray-400;
+  @apply cursor-not-allowed;
 }
 </style>

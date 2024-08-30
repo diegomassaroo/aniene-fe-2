@@ -134,7 +134,8 @@
         "title": "Nessun prodotto trovato",
         "subText": "Prova ad aggiustare la tua ricerca o i filtri per trovare quello che stai cercando.",
         "clearFiltersAndSearch": "Cancella tutti i filtri e la ricerca"
-      }
+      },
+      "remove": "Rimuovi"
     },
     "billing": {
       "billing": "Fatturazione",

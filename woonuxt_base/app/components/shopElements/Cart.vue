@@ -3,18 +3,18 @@ const { cart, toggleCart, isUpdatingCart } = useCart();
 </script>
 
 <template>
-  <div class="fixed top-0 bottom-0 right-0 z-50 flex flex-col w-11/12 max-w-lg overflow-x-hidden bg-white shadow-lg">
-    <Icon name="ion:close-outline" class="absolute p-1 rounded-lg shadow-lg top-6 left-6 md:left-8 cursor-pointer" size="34" @click="toggleCart(false)" />
-    <EmptyCart v-if="cart && !cart.isEmpty" class="rounded-lg shadow-lg p-1.5 hover:bg-red-400 hover:text-white" />
-
-    <div class="mt-8 text-center">
-      {{ $t('messages.shop.cart') }}
-      <span v-if="cart?.contents?.productCount"> ({{ cart?.contents?.productCount }}) </span>
+  <div class="fixed top-0 bottom-0 right-0 z-50 p-3.5 flex flex-col w-full max-w-lg overflow-x-hidden bg-white shadow-lg">
+    <div class="flex justify-between">
+      <div class="text-body">
+        {{ $t('messages.shop.cart') }}
+        <span v-if="cart?.contents?.productCount"> ({{ cart?.contents?.productCount }}) </span>
+      </div>
+      <CloseIcon size="34" @click="toggleCart(false)" />
     </div>
 
     <ClientOnly>
       <template v-if="cart && !cart.isEmpty">
-        <ul class="flex flex-col flex-1 gap-4 p-6 overflow-y-scroll md:p-8">
+        <ul class="grid my-3.5 flex-col flex-1 gap-4 overflow-y-scroll">
           <CartCard v-for="item in cart.contents?.nodes" :key="item.key" :item />
         </ul>
         <div class="px-8 mb-8">
