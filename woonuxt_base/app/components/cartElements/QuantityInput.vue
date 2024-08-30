@@ -17,34 +17,37 @@ watch(
     updateItemQuantity(item.key, quantity.value >= 0 ? quantity.value : 0);
   }, 250),
 );
+
+console.log(quantity.value);
 </script>
 
 <template>
-  <div class="flex rounded bg-white text-sm leading-none shadow-sm shadow-gray-200 isolate">
+  <div class="flex gap-8">
     <button
       title="Decrease Quantity"
       aria-label="Decrease Quantity"
       @click="decrementQuantity"
       type="button"
-      class="focus:outline-none border-r w-6 h-6 border rounded-l border-gray-300 hover:bg-gray-50 disabled:cursor-not-allowed"
+      class="text-blue focus:outline-none hover:text-black disabled:cursor-not-allowed"
       :disabled="isUpdatingCart || quantity <= 0">
-      <Icon name="ion:remove" size="14" />
+      –
     </button>
-    <input
+    <!-- <input
       v-model.number="quantity"
       type="number"
       min="0"
       :max="productType.stockQuantity"
       aria-label="Quantity"
-      class="flex items-center justify-center w-8 px-2 text-right text-xs focus:outline-none border-y border-gray-300" />
+      class="text-blue flex items-center justify-center text-center focus:outline-none" /> -->
+    <span class="text-blue">{{ quantity }}</span>
     <button
       title="Increase Quantity"
       aria-label="Increase Quantity"
       @click="incrementQuantity"
       type="button"
-      class="focus:outline-none border-l w-6 h-6 border rounded-r hover:bg-gray-50 border-gray-300 disabled:cursor-not-allowed disabled:bg-gray-100"
+      class="text-blue focus:outline-none hover:text-black disabled:cursor-not-allowed"
       :disabled="isUpdatingCart || hasNoMoreStock">
-      <Icon name="ion:add" size="14" />
+      +
     </button>
   </div>
 </template>

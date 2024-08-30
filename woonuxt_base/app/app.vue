@@ -210,7 +210,12 @@ img.skeleton {
 body,
 p {
   font-family: 'MT Grotesque', Arial, sans-serif;
-  font-size: 0.8rem;
+  font-size: 1.188rem;
+  line-height: 1.563rem;
+}
+
+.text-small {
+  font-size: 0.813rem;
   line-height: 1rem;
 }
 
@@ -220,9 +225,9 @@ h1 {
   margin-bottom: -0.75rem;
 }
 
-h3, .text-body, .text-body > p {
-  font-size: 1.15rem;
-  line-height: 1.57rem;
+h3 {
+  font-size: 1.188rem;
+  line-height: 1.563rem;
 }
 
 .leading-0 {

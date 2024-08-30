@@ -113,10 +113,10 @@ const imagetoDisplay = computed<string>(() => {
         <h3 class="absolute">{{ node.booknumber?.number }}</h3>
         <h3 class="pl-18">{{ node.name }}</h3>
         <h3 class="pl-18">{{ node.bookauthor?.author }}</h3>
-        <div class="pl-18 text-body" v-html="node.shortDescription"></div>
+        <div class="pl-18" v-html="node.shortDescription"></div>
       </div>
       <div>
-        <div class="text-body" v-html="node.description"></div>
+        <div v-html="node.description"></div>
       </div>
       <div class="pl-18">
         <ProductPrice :sale-price="node.salePrice" :regular-price="node.regularPrice" />

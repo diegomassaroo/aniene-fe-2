@@ -6,6 +6,7 @@ const props = defineProps({
 const isLoading = ref(false);
 const { t } = useI18n();
 const addToCartButtonText = computed(() => (isLoading.value ? t('messages.shop.adding') : t('messages.shop.addToCart')));
+// const addToCartButtonText = computed(() => (isLoading.value ? t('messages.shop.adding') : props.disabled ? t('messages.shop.disabled') : t('messages.shop.addToCart')));
 
 // stop loading when cart is updated
 watch(cart, (val) => {
@@ -14,12 +15,7 @@ watch(cart, (val) => {
 </script>
 
 <template>
-  <button
-    type="submit"
-    class="hover:text-black text-blue text-body"
-    :class="{ disabled: disabled }"
-    :disabled="disabled"
-    @click="isLoading = true">
+  <button type="submit" class="hover:text-black text-blue" :class="{ disabled: disabled }" :disabled="disabled" @click="isLoading = true">
     <span>{{ addToCartButtonText }}</span>
   </button>
 </template>
@@ -31,6 +27,6 @@ button {
 }
 
 button.disabled {
-  @apply cursor-not-allowed;
+  @apply cursor-not-allowed text-black;
 }
 </style>

@@ -12,7 +12,7 @@ const { isShowingSearch } = useSearching();
       <div class="md:col-span-4 grid md:flex gap-2.5 content-end md:flex-wrap">
         <LangSwitcher />
         <div class="relative inline-flex leading-none h-fit md:p-3.5">
-          <NuxtLink to="/information" class="hover:text-blue leading-0 h-fit justify-end md:justify-normal">{{ $t('messages.general.information') }}</NuxtLink>
+          <NuxtLink to="/information" class="text-small hover:text-blue leading-0 h-fit justify-end md:justify-normal">{{ $t('messages.general.information') }}</NuxtLink>
         </div>
         <CartTrigger />
       </div>

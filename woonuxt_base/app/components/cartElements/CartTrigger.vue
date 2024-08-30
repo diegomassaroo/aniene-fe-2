@@ -4,10 +4,10 @@ const { toggleCart, cart } = useCart();
 
 <template>
   <div class="relative cursor-pointer inline-flex hover:text-blue md:p-3.5 justify-end md:justify-normal" title="Cart" @click="toggleCart">
-    <NuxtLink class="leading-none leading-0 h-fit">{{ $t('messages.shop.cart') }}</NuxtLink>
+    <NuxtLink class="text-small leading-none leading-0 h-fit">{{ $t('messages.shop.cart') }}</NuxtLink>
     <ClientOnly>
       <Transition name="popIn" mode="out-in">
-        <span class="leading-none leading-0 h-fit" v-if="cart?.contents?.itemCount > 0">&nbsp;[{{ cart?.contents?.itemCount }}]</span>
+        <span class="text-small leading-none leading-0 h-fit" v-if="cart?.contents?.itemCount > 0">&nbsp;[{{ cart?.contents?.itemCount }}]</span>
       </Transition>
     </ClientOnly>
   </div>

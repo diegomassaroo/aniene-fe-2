@@ -135,7 +135,9 @@
         "subText": "Prova ad aggiustare la tua ricerca o i filtri per trovare quello che stai cercando.",
         "clearFiltersAndSearch": "Cancella tutti i filtri e la ricerca"
       },
-      "remove": "Rimuovi"
+      "remove": "Rimuovi",
+      "disabled": "Esaurito",
+      "calcShipping": "(La spedizione verrà calcolata al checkout)"
     },
     "billing": {
       "billing": "Fatturazione",

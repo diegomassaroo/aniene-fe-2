@@ -13,14 +13,14 @@ const switchLocale = (newLocale) => {
     <button 
       @click="switchLocale('en_US')"
       :class="{ 'text-blue': locale === 'en_US', 'text-black': locale !== 'en_US' }"
-      class="hover:text-blue cursor-pointer leading-0">
+      class="text-small hover:text-blue cursor-pointer leading-0">
       EN
     </button>
-    <span class="leading-0">&nbsp;/&nbsp;</span>
+    <span class="text-small leading-0">&nbsp;/&nbsp;</span>
     <button 
       @click="switchLocale('it_IT')"
       :class="{ 'text-blue': locale === 'it_IT', 'text-black': locale !== 'it_IT' }"
-      class="hover:text-blue cursor-pointer leading-0">
+      class="text-small hover:text-blue cursor-pointer leading-0">
       IT
     </button>
   </div>

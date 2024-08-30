@@ -135,7 +135,9 @@
         "subText": "Try adjusting your search or filter to find what you're looking for.",
         "clearFiltersAndSearch": "Clear all filters and search"
       },
-      "remove": "Remove"
+      "remove": "Remove",
+      "disabled": "Sold out",
+      "calcShipping": "(Shipping is calculating on checkout)"
     },
     "billing": {
       "billing": "Billing",

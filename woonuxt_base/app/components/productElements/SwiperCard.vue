@@ -51,7 +51,7 @@ const updateCurrentSlide = (swiper) => {
       <button class="prevEl w-1/2 h-full cursor-pointer"></button>
       <button class="nextEl w-1/2 h-full cursor-pointer"></button>
     </div>
-    <div class="absolute bottom-2.5 right-2.5 z-10">
+    <div class="absolute bottom-2.5 right-2.5 z-10 text-small leading-0">
       <span>{{ currentSlide }}</span
       >/<span>{{ totalSlides }}</span>
     </div>
