@@ -7,7 +7,7 @@ const { toggleCart, cart } = useCart();
     <NuxtLink class="text-small leading-none leading-0 h-fit">{{ $t('messages.shop.cart') }}</NuxtLink>
     <ClientOnly>
       <Transition name="popIn" mode="out-in">
-        <span class="text-small leading-none leading-0 h-fit" v-if="cart?.contents?.itemCount > 0">&nbsp;[{{ cart?.contents?.itemCount }}]</span>
+        <span class="text-small leading-none leading-0 h-fit" v-if="cart?.contents?.itemCount > 0">&numsp;{{ cart?.contents?.itemCount }}</span>
       </Transition>
     </ClientOnly>
   </div>

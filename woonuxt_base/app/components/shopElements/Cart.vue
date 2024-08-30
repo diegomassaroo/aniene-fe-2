@@ -7,7 +7,7 @@ const { cart, toggleCart, isUpdatingCart } = useCart();
     <div class="flex justify-between">
       <div>
         {{ $t('messages.shop.cart') }}
-        <span v-if="cart?.contents?.productCount"> ({{ cart?.contents?.productCount }}) </span>
+        <!-- <span v-if="cart?.contents?.productCount"> ({{ cart?.contents?.productCount }}) </span> -->
       </div>
       <CloseIcon size="34" @click="toggleCart(false)" />
     </div>

@@ -1,12 +1,16 @@
 <script lang="ts" setup>
 const { locale } = useI18n();
 const runtimeConfig = useRuntimeConfig();
+const { data } = await useAsyncGql('infoPage');
+const page = data.value?.page102;
+const pageIT = data.value?.page133;
+// const pageIT = data.value?.page127;
 
 useHead({
   title: `Aniene | Information`,
   meta: [
     {
-      name: 'description',
+      name: 'description', 
       content: `Aniene è un progetto editoriale ideato nel 2021 dall'artista e curatore Alessandro Dandini de Sylva in collaborazione con il designer Filippo Nostri e dedicato a libri di artisti, curatori e spazi culturali indipendenti presenti a Roma o con un rapporto speciale con la Città.`,
     },
     {
@@ -19,8 +23,8 @@ useHead({
 </script>
 
 <template>
-  <div class="info-container">
-    <!-- <div :class="[locale !== 'en' ? 'hide' : '']" v-if="page" v-html="page.content"></div>
-    <div :class="[locale === 'en' ? 'hide' : '']" v-if="pageIT" v-html="pageIT.content"></div> -->
+  <div class="p-3.5 md:pl-6 pt-10 max-w-2xl md:ml-12">
+    <div :class="[locale !== 'en' ? 'hide' : '']" v-if="page" v-html="page.content"></div>
+    <div :class="[locale === 'en' ? 'hide' : '']" v-if="pageIT" v-html="pageIT.content"></div>
   </div>
 </template>

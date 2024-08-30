@@ -208,26 +208,46 @@ img.skeleton {
 }
 
 body,
-p {
+p,
+h3 {
   font-family: 'MT Grotesque', Arial, sans-serif;
-  font-size: 1.188rem;
-  line-height: 1.563rem;
+  font-size: 1.063rem;
+  line-height: 1.406rem;
+}
+
+@media screen and (min-width: 768px) {
+  body,
+  p,
+  h3 {
+    font-size: 1.188rem;
+    line-height: 1.563rem;
+  }
 }
 
 .text-small {
-  font-size: 0.813rem;
-  line-height: 1rem;
+  font-size: 1.063rem;
+  line-height: 1.406rem;
+}
+
+@media screen and (min-width: 768px) {
+  .text-small {
+    font-size: 0.813rem;
+    line-height: 1rem;
+  }
 }
 
 h1 {
-  font-size: 2.65rem;
+  font-size: 2rem;
   line-height: 1;
-  margin-bottom: -0.75rem;
+  margin-bottom: -0.55rem;
 }
 
-h3 {
-  font-size: 1.188rem;
-  line-height: 1.563rem;
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 2.65rem;
+    line-height: 1;
+    margin-bottom: -0.75rem;
+  }
 }
 
 .leading-0 {
@@ -235,6 +255,6 @@ h3 {
 }
 
 .pl-18 {
-  padding-left: 4.5rem;
+  padding-left: 3.75rem;
 }
 </style>
