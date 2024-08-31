@@ -84,7 +84,7 @@ useSeoMeta({
       <form class="grid md:grid-cols-10 p-3.5 pt-10" v-else @submit.prevent="payNow">
         <div class="md:col-span-6 md:pl-3.5 md:ml-12 pt-0.5 checkout-form">
           <!-- Customer details -->
-          <div v-if="!viewer && customer.billing">
+          <div v-if="customer.billing">
             <p class="w-full mb-7">{{ $t('messages.billing.contact') }}</p>
             <div class="w-full mt-3.5">
               <!-- <label for="email">{{ $t('messages.billing.email') }}</label> -->
@@ -115,7 +115,7 @@ useSeoMeta({
           </label>
 
           <Transition name="scale-y" mode="out-in">
-            <div v-if="orderInput.shipToDifferentAddress">
+            <div v-show="orderInput.shipToDifferentAddress">
               <h2 class="mb-3.5">{{ $t('messages.general.shippingDetails') }}</h2>
               <ShippingDetails v-model="customer.shipping" />
             </div>
