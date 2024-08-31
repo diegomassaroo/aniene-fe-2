@@ -117,7 +117,7 @@ useSeoMeta({
           <Transition name="scale-y" mode="out-in">
             <div v-show="orderInput.shipToDifferentAddress">
               <h2 class="mb-3.5">{{ $t('messages.general.shippingDetails') }}</h2>
-              <ShippingDetails v-model="customer.shipping" />
+              <ShippingDetails v-model="customer.shipping" :shipDifferent="orderInput.shipToDifferentAddress" />
             </div>
           </Transition>
 

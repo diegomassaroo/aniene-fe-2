@@ -15,6 +15,7 @@ export const useAuth = () => {
   // Log in the user
   const loginUser = async (credentials: CreateAccountInput): Promise<{ success: boolean; error: any }> => {
     isPending.value = true;
+    // viewer.value = {databaseId: 0, id: '', username: credentials.username};
 
     try {
       const { loginWithCookies } = await GqlLogin(credentials);

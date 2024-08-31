@@ -157,24 +157,24 @@ useSeoMeta({
         <div>
           <div class="flex justify-between">
             <span>{{ $t('messages.shop.subtotal') }}</span>
-            <span>{{ order.subtotal }}</span>
+            <div v-html="order.subtotal"></div>
           </div>
           <div class="flex justify-between">
             <span>{{ $t('messages.general.tax') }}</span>
-            <span>{{ order.totalTax }}</span>
+            <div v-html="order.totalTax"></div>
           </div>
           <div class="flex justify-between">
             <span>{{ $t('messages.general.shipping') }}</span>
-            <span>{{ order.shippingTotal }}</span>
+            <div v-html="order.shippingTotal"></div>
           </div>
           <div v-if="hasDiscount" class="flex justify-between text-primary">
             <span>{{ $t('messages.shop.discount') }}</span>
-            <span>- {{ order.discountTotal }}</span>
+            <div v-html="order.discountTotal"></div>
           </div>
           <hr class="my-8" />
           <div class="flex justify-between">
             <span class>{{ $t('messages.shop.total') }}</span>
-            <span class="font-semibold">{{ order.total }}</span>
+            <div v-html="order.total"></div>
           </div>
         </div>
       </div>

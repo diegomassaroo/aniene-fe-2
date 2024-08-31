@@ -24,7 +24,8 @@ const goToOrder = (orderNumber: string): void => {
           <tr>
             <th>{{ $t('messages.shop.order') }}</th>
             <th>{{ $t('messages.general.date') }}</th>
-            <th>{{ $t('messages.general.status') }}</th>
+            <!-- <th>{{ $t('messages.general.status') }}</th> -->
+            <td><OrderStatusLabel v-if="order.status" :order="order" /></td>
             <th class="text-right">{{ $t('messages.shop.total') }}</th>
           </tr>
         </thead>
