@@ -17,8 +17,6 @@ watch(
     updateItemQuantity(item.key, quantity.value >= 0 ? quantity.value : 0);
   }, 250),
 );
-
-console.log(quantity.value);
 </script>
 
 <template>

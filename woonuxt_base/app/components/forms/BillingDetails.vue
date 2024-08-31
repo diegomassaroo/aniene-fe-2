@@ -10,7 +10,7 @@ const billing = toRef(props, 'modelValue');
 </script>
 
 <template>
-  <div class="grid w-full gap-x-3.5 gap-y-7 lg:grid-cols-2">
+  <div class="grid w-full gap-x-3.5 gap-y-3.5 lg:grid-cols-2">
     <div class="w-full">
       <!-- <label for="first-name">{{ $t('messages.billing.firstName') }}</label> -->
       <input id="first-name" v-model="billing.firstName" :placeholder="$t('messages.billing.firstName')" autocomplete="given-name" type="text" required />

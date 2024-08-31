@@ -70,15 +70,15 @@ useSeoMeta({
 <template>
   <div>
     <template v-if="cart && customer">
-      <div v-if="cart.isEmpty" class="flex flex-col items-center justify-center flex-1 mb-12">
-        <Icon name="ion:cart-outline" size="156" class="opacity-25 mb-5" />
-        <h2 class="text-2xl font-bold mb-2">{{ $t('messages.shop.cartEmpty') }}</h2>
-        <span class="text-gray-400 mb-4">{{ $t('messages.shop.addProductsInYourCart') }}</span>
-        <NuxtLink
+      <div v-if="cart.isEmpty" class="flex flex-col items-center justify-center flex-1 min-h-[600px] text-gray-300">
+        <!-- <Icon name="ion:cart-outline" size="156" class="opacity-25 mb-5" /> -->
+        <h2>{{ $t('messages.shop.cartEmpty') }}</h2>
+        <span>{{ $t('messages.shop.addProductsInYourCart') }}</span>
+        <!-- <NuxtLink
           to="/products"
           class="flex items-center justify-center gap-3 p-2 px-3 mt-4 text-center">
           {{ $t('messages.shop.browseOurProducts') }}
-        </NuxtLink>
+        </NuxtLink> -->
       </div>
 
       <form class="grid md:grid-cols-10 p-3.5 pt-10" v-else @submit.prevent="payNow">
@@ -109,7 +109,7 @@ useSeoMeta({
             <BillingDetails v-model="customer.billing" />
           </div>
 
-          <label v-if="cart.availableShippingMethods.length > 0" for="shipToDifferentAddress" class="flex items-center gap-3.5">
+          <label v-if="cart.availableShippingMethods.length > 0" for="shipToDifferentAddress" class="mt-10 mb-5 flex items-center gap-3.5">
             <span>{{ $t('messages.billing.differentAddress') }}</span>
             <input id="shipToDifferentAddress" v-model="orderInput.shipToDifferentAddress" type="checkbox" name="shipToDifferentAddress" />
           </label>
@@ -123,12 +123,12 @@ useSeoMeta({
 
           <!-- Shipping methods -->
           <div v-if="cart.availableShippingMethods.length">
-            <h3 class="mb-3.5">{{ $t('messages.general.shippingSelect') }}</h3>
+            <h3 class="mt-10 mb-5">{{ $t('messages.general.shippingSelect') }}</h3>
             <ShippingOptions :options="cart.availableShippingMethods[0].rates" :active-option="cart.chosenShippingMethods[0]" />
           </div>
 
           <!-- Pay methods -->
-          <div v-if="paymentGateways?.nodes.length" class="mt-2 col-span-full">
+          <div v-if="paymentGateways?.nodes.length" class="col-span-full">
             <h2 class="mb-3.5">{{ $t('messages.billing.paymentOptions') }}</h2>
             <PaymentOptions v-model="orderInput.paymentMethod" class="mb-4" :paymentGateways />
             <StripeElement v-if="stripe" v-show="orderInput.paymentMethod.id == 'stripe'" :stripe @updateElement="handleStripeElement" />
@@ -170,7 +170,7 @@ useSeoMeta({
 }
 
 .checkout-form select {
-  @apply p-1 pb-0.5 w-full rounded-none border-black border-t-0 border-x-0 border-b outline-none hover:bg-transparent text-black;
+  @apply pt-1 pb-0.5 px-0 w-full rounded-none border-black border-t-0 border-x-0 border-b outline-none hover:bg-transparent text-black;
 }
 
 .checkout-form textarea {
@@ -183,6 +183,6 @@ useSeoMeta({
 }
 
 .checkout-form .StripeElement {
-  padding: 1rem 0.75rem;
+  @apply py-2.5;
 }
 </style>

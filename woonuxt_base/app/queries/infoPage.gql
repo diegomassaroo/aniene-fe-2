@@ -2,7 +2,7 @@ query infoPage {
   page102: page(id: "102", idType: DATABASE_ID) {
     content
   }
-  page133: page(id: "133", idType: DATABASE_ID) {
+  page127: page(id: "127", idType: DATABASE_ID) {
     content
   }
 }

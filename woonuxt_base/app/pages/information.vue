@@ -3,8 +3,8 @@ const { locale } = useI18n();
 const runtimeConfig = useRuntimeConfig();
 const { data } = await useAsyncGql('infoPage');
 const page = data.value?.page102;
-const pageIT = data.value?.page133;
-// const pageIT = data.value?.page127;
+// const pageIT = data.value?.page133;
+const pageIT = data.value?.page127;
 
 
 useHead({
