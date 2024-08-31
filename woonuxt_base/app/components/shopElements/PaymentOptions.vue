@@ -41,7 +41,7 @@ onMounted(() => {
 
 <style lang="postcss" scoped>
 .option {
-  @apply bg-white border cursor-pointer flex flex-1 text-sm py-3 px-4 gap-2 items-center;
+  @apply bg-white border cursor-pointer flex flex-1 text-sm p-3.5 gap-2 items-center;
 
   &.active-option {
     @apply border-blue cursor-default pointer-events-none;

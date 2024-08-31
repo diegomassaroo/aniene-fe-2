@@ -123,7 +123,7 @@ useSeoMeta({
 
           <!-- Shipping methods -->
           <div v-if="cart.availableShippingMethods.length">
-            <h3 class="mt-10 mb-5">{{ $t('messages.general.shippingSelect') }}</h3>
+            <h3 class="mt-10 mb-3.5">{{ $t('messages.general.shippingSelect') }}</h3>
             <ShippingOptions :options="cart.availableShippingMethods[0].rates" :active-option="cart.chosenShippingMethods[0]" />
           </div>
 
@@ -174,7 +174,7 @@ useSeoMeta({
 }
 
 .checkout-form textarea {
-  @apply border outline-none border-black w-full p-0.5;
+  @apply border outline-none border-black w-full p-3.5;
 }
 
 .checkout-form input.has-error,
