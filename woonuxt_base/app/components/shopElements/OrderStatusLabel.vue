@@ -26,6 +26,6 @@ const readableStatus = computed(() => props.order?.status?.replace(/_/g, ' ') ||
 }
 
 .order-PROCESSING {
-  @apply bg-blue-50 border-blue-100 text-blue-600;
+  @apply bg-blue border-blue-100 text-blue-600;
 }
 </style>
