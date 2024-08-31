@@ -209,7 +209,8 @@ img.skeleton {
 
 body,
 p,
-h3 {
+h3,
+.text-body {
   font-family: 'MT Grotesque', Arial, sans-serif;
   font-size: 1.063rem;
   line-height: 1.406rem;
@@ -218,7 +219,8 @@ h3 {
 @media screen and (min-width: 768px) {
   body,
   p,
-  h3 {
+  h3,
+  .text-body {
     font-size: 1.188rem;
     line-height: 1.563rem;
   }

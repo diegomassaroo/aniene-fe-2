@@ -28,7 +28,8 @@ const moveToWishList = () => {
 
 <template>
   <div v-if="productType">
-    <NuxtLink :to="productSlug">{{ productType.name }}</NuxtLink>
+    <p>{{ productType.name }}</p>
+    <p>{{ item.product.node.bookauthor.author }}</p>
     <span v-if="productType.salePrice" class="text-[10px] border-green-200 leading-none bg-green-100 inline-block p-0.5 rounded text-green-600 border">
       Save {{ salePercentage }}
     </span>

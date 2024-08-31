@@ -31,8 +31,8 @@ watch(
 </script>
 
 <template>
-  <select @change="select" v-if="countryStatesDict[props.countryCode]?.length" class="h-[42px]">
-    <option value="" :selected="!props.modelValue">Select a state</option>
+  <select @change="select" v-if="countryStatesDict[props.countryCode]?.length" class="h-[30px] text-body">
+    <option value="" :selected="!props.modelValue">{{ $t('messages.billing.selectstate') }}</option>
     <option v-for="state in countryStatesDict[props.countryCode]" :key="state.code" :value="state.code" :selected="state.code === props.modelValue">
       {{ state.name }}
     </option>

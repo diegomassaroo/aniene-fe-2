@@ -14,17 +14,21 @@ const { cart, toggleCart, isUpdatingCart } = useCart();
 
     <ClientOnly>
       <template v-if="cart && !cart.isEmpty">
-        <ul class="grid my-3.5 flex-col flex-1 gap-5 overflow-y-scroll">
+        <ul class="grid mt-7 flex-col flex-1 gap-5 overflow-y-scroll">
           <CartCard v-for="item in cart.contents?.nodes" :key="item.key" :item />
         </ul>
-        <p>{{ $t('messages.shop.subtotal') }}</p>
-        <div class="flex">
-          <div v-html="cart.subtotal"></div>
-          <span>&nbsp;{{ $t('messages.shop.calcShipping') }}</span>
+        <div class="mt-7 gap-3.5 grid">
+          <div>
+            <p>{{ $t('messages.shop.subtotal') }}</p>
+            <div class="flex">
+              <div v-html="cart.subtotal"></div>
+              <span>&nbsp;{{ $t('messages.shop.calcShipping') }}</span>
+            </div>
+          </div>
+          <NuxtLink class="block text-blue hover:text-black" to="/checkout" @click.prevent="toggleCart()">
+            <span>{{ $t('messages.shop.checkout') }}</span>
+          </NuxtLink>
         </div>
-        <NuxtLink class="block text-blue hover:text-black" to="/checkout" @click.prevent="toggleCart()">
-          <span>{{ $t('messages.shop.checkout') }}</span>
-        </NuxtLink>
       </template>
       <!-- Empty Cart Message -->
       <EmptyCartMessage v-else-if="cart && cart.isEmpty" />

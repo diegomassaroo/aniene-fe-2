@@ -6,6 +6,7 @@ const page = data.value?.page102;
 const pageIT = data.value?.page133;
 // const pageIT = data.value?.page127;
 
+
 useHead({
   title: `Aniene | Information`,
   meta: [
@@ -24,7 +25,7 @@ useHead({
 
 <template>
   <div class="p-3.5 md:pl-6 pt-10 max-w-2xl md:ml-12">
-    <div :class="[locale !== 'en' ? 'hide' : '']" v-if="page" v-html="page.content"></div>
-    <div :class="[locale === 'en' ? 'hide' : '']" v-if="pageIT" v-html="pageIT.content"></div>
+    <div :class="[locale !== 'en_US' ? 'hidden' : '']" class="pt-0.5" v-if="page" v-html="page.content"></div>
+    <div :class="[locale === 'en_US' ? 'hidden' : '']" class="pt-0.5" v-if="pageIT" v-html="pageIT.content"></div>
   </div>
 </template>
