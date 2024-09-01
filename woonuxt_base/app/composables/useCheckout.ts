@@ -75,16 +75,16 @@ export function useCheckout() {
       };
 
       // Create account
-      if (orderInput.value.createAccount) {
-        checkoutPayload.account = { username, password } as CreateAccountInput;
-      }
+      // if (orderInput.value.createAccount) {
+      //   checkoutPayload.account = { username, password } as CreateAccountInput;
+      // }
 
       const { checkout } = await GqlCheckout(checkoutPayload);
 
-      // Login user if account was created during checkout
-      if (orderInput.value.createAccount) {
-        await loginUser({ username, password });
-      }
+      // // Login user if account was created during checkout
+      // if (orderInput.value.createAccount) {
+      //   await loginUser({ username, password });
+      // }
 
       const orderId = checkout?.order?.databaseId;
       const orderKey = checkout?.order?.orderKey;
