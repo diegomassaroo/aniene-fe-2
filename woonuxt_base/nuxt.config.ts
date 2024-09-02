@@ -116,5 +116,29 @@ export default defineNuxtConfig({
       modalButtonHoverBackground: '#000',
     },
     isControlButtonEnabled: false,
+    locales: ['en', 'it'],
+    cookies: {
+      necessary: [
+        {
+          description: {
+            en: 'This cookie stores preferences.',
+            it: 'Questo cookie memorizza le preferenze.'
+          },
+          id: 'p', // use a short cookie id to save bandwidth and prefixes to separate
+          isPreselected: false, // `true` is not GDPR compliant! This flag does not enable any cookies, it only preselects the cookie's modal toggle. The default is `false`.
+          name: {
+            en: 'Preferences', // you always have to specify a cookie name (in English),
+            it: 'Preferenze'
+          },
+          links: {
+            'https://example.com/privacy': 'Privacy Policy',
+            'https://example.com/terms': 'Terms of Service',
+          },
+          src: 'https://example.com/preferences/js?id=<API-KEY>',
+          targetCookieIds: ['xmpl_a', 'xmpl_b'],
+        }
+      ],
+      optional: [],
+    }
   },
 });
