@@ -2,6 +2,8 @@
 import { StockStatusEnum, ProductTypesEnum, type AddToCartInput } from '#woo';
 import { ref, computed, watch, onMounted } from 'vue';
 
+const { locale } = useI18n();
+
 const route = useRoute();
 const { storeSettings } = useAppConfig();
 const { arraysEqual, formatArray, checkForVariationTypeOfAny } = useHelpers();
@@ -103,10 +105,36 @@ const imagetoDisplay = computed<string>(() => {
   }
   return mainImage.value;
 });
+
+const langSelector = computed(() => props.node?.languageSelector?.selector);
+const checkLangSel = ref(false);
+
+const updateProductCardVisibility = (val: string) => {
+  if (val === 'en_US' && langSelector.value === false) {
+    checkLangSel.value = true;
+  } else if (val === 'it_IT' && langSelector.value === true) {
+    checkLangSel.value = true;
+  } else {
+    checkLangSel.value = false;
+  }
+};
+
+watch(
+  locale,
+  (newLocale: string) => {
+    updateProductCardVisibility(newLocale);
+  },
+  { immediate: true } // Ensure that the watcher runs immediately with the current value.
+);
+
+// Initialize visibility based on the current locale when the component is mounted.
+onMounted(() => {
+  updateProductCardVisibility(locale.value);
+})
 </script>
 
 <template>
-  <div class="grid md:grid-cols-10 gap-y-2.5">
+  <div class="grid md:grid-cols-10 gap-y-2.5" v-if="!checkLangSel">
     <SwiperCard class="md:col-span-6" :main-image="node.image" :gallery="node.galleryImages!" />
     <div class="md:col-span-4 p-3.5 pt-0.5 gap-y-6 grid">
       <div>

@@ -29,7 +29,7 @@ export default defineNuxtConfig({
 
   components: [{ path: resolve('./app/components'), pathPrefix: false }],
 
-  modules: ['woonuxt-settings', 'nuxt-font-loader', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/image', '@nuxtjs/i18n'],
+  modules: ['woonuxt-settings', 'nuxt-font-loader', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/image', '@nuxtjs/i18n', '@dargmuesli/nuxt-cookie-control'],
 
   'graphql-client': {
     clients: {
@@ -101,5 +101,20 @@ export default defineNuxtConfig({
         variable: 'MTGi',
       },
     ],
+  },
+  cookieControl: {
+    barPosition: 'bottom-right',
+    closeModalOnClickOutside: false,
+    colors: {
+      barBackground: '#fff',
+      barButtonBackground: '#0000ff',
+      barButtonColor: '#fff',
+      barButtonHoverBackground: '#000',
+      barButtonHoverColor: '#fff',
+      barTextColor: '#000',
+      modalButtonBackground: '#0000ff',
+      modalButtonHoverBackground: '#000',
+    },
+    isControlButtonEnabled: false,
   },
 });

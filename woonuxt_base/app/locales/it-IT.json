@@ -35,7 +35,9 @@
       "customerService": "Servizio clienti",
       "processing": "Elaborazione",
       "readOnly": "Sola lettura",
-      "information": "Informazioni"
+      "information": "Informazioni",
+      "cookieName": "Cookies",
+      "cookieDescription": "Utilizziamo i nostri cookie e cookie di terze parti in modo da poter visualizzare correttamente questo sito Web e comprendere meglio come viene utilizzato, al fine di migliorare i servizi che offriamo. Una decisione sui permessi di utilizzo dei cookie può essere modificata in qualsiasi momento utilizzando il pulsante dei cookie che apparirà dopo aver effettuato una selezione su questo banner."
     },
     "account": {
       "changePassword": "Cambia password",
