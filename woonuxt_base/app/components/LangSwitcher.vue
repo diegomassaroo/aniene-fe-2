@@ -4,7 +4,16 @@ const { locale, setLocale } = useI18n();
 const switchLocale = (newLocale) => {
   locale.value = newLocale;
   setLocale(newLocale);
+  localStorage.setItem('user-locale', newLocale); // Store the locale in localStorage
 };
+
+onMounted(() => {
+  const storedLocale = localStorage.getItem('user-locale');
+  if (storedLocale) {
+    locale.value = storedLocale;
+    setLocale(storedLocale);
+  }
+});
 </script>
 
 <template>
