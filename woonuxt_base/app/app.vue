@@ -64,7 +64,7 @@ watch(
       <div v-if="isShowingCart || isShowingMobileMenu" class="bg-black opacity-25 inset-0 z-40 fixed" @click="closeCartAndMenu" />
     </Transition>
 
-    <!-- <CookieControl locale="en" /> -->
+    <!-- <CookieControl :locale="$store.state.lang" /> -->
   </div>
 </template>
 
