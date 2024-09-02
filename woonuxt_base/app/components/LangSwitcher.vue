@@ -25,6 +25,6 @@ const switchLocale = (newLocale: string) => {
 
 <style lang="postcss" scoped>
 .langSwitch button.active {
-  @apply text-blue;
+  color: text-blue;
 }
 </style>
