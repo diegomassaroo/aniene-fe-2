@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const { locale, setLocaleCookie } = useI18n();
+const { locale, setLocale, setLocaleCookie } = useI18n();
 
 const switchLocale = (newLocale: string) => {
-  locale.value = newLocale;
+  setLocale(newLocale);
   setLocaleCookie(newLocale);
 };
 </script>
