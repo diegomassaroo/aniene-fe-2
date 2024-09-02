@@ -1,14 +1,10 @@
-<script setup lang="ts">
+<script setup>
 const { locale, setLocaleCookie } = useI18n();
 
-const switchLocale = (newLocale: string) => {
+const switchLocale = (newLocale) => {
   locale.value = newLocale;
   setLocaleCookie(newLocale);
 };
-
-onMounted(() => {
-  console.log('Current locale on mount:', locale.value);
-});
 </script>
 
 
