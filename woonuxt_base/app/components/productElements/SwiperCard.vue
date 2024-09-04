@@ -43,11 +43,8 @@ const updateCurrentSlide = (swiper) => {
     :space-between="0"
     :speed="200"
     class="w-full h-fit">
-    <!-- <swiper-slide>
-      <img :src="mainImage.sourceUrl" />
-    </swiper-slide> -->
     <swiper-slide v-for="picture in galleryImages"><img :src="picture.sourceUrl" /></swiper-slide>
-    <div ref="pagEl" class="absolute w-full h-full top-0 z-10">
+    <div ref="pagEl" class="hidden md:block absolute w-full h-full top-0 z-10">
       <button class="prevEl w-1/2 h-full cursor-pointer"></button>
       <button class="nextEl w-1/2 h-full cursor-pointer"></button>
     </div>

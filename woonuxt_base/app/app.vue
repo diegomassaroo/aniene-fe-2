@@ -21,29 +21,6 @@ watch(
 useHead({
   titleTemplate: `%s - ${siteName}`,
 });
-
-const {
-  cookiesEnabled,
-  cookiesEnabledIds,
-  isConsentGiven,
-  isModalActive,
-  moduleOptions,
-} = useCookieControl()
-
-// example: react to a cookie being accepted
-watch(
-  () => cookiesEnabledIds.value,
-  (current, previous) => {
-    if (
-      !previous?.includes('google-analytics') &&
-      current?.includes('google-analytics')
-    ) {
-      // cookie with id `google-analytics` got added
-      window.location.reload() // placeholder for your custom change handler
-    }
-  },
-  { deep: true },
-)
 </script>
 
 <template>
@@ -63,8 +40,6 @@ watch(
     <Transition name="fade">
       <div v-if="isShowingCart || isShowingMobileMenu" class="bg-black opacity-25 inset-0 z-40 fixed" @click="closeCartAndMenu" />
     </Transition>
-
-    <!-- <CookieControl :locale="$store.state.lang" /> -->
   </div>
 </template>
 
