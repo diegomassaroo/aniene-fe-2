@@ -1,8 +1,26 @@
 <script setup>
+// Get locale and functions from useI18n
 const { locale, setLocale, setLocaleCookie } = useI18n();
-const switchLocale = (newLocale) => {
+
+// Use a ref to track the current locale
+const currentLocale = ref(locale.value);
+
+// Log the initial locale when the component is mounted
+onMounted(() => {
+  console.log('Initial locale:', locale.value);
+});
+
+// Watch for changes in locale and update cookie
+watch(currentLocale, (newLocale) => {
+  console.log('Locale changed to:', newLocale);
   setLocale(newLocale);
   setLocaleCookie(newLocale);
+});
+
+// Function to switch locale
+const switchLocale = (newLocale) => {
+  console.log('Switching locale to:', newLocale);
+  currentLocale.value = newLocale; // This will trigger the watcher
 };
 </script>
 
