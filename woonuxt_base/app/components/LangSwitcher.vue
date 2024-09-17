@@ -1,8 +1,13 @@
 <script setup>
-const { locale, setLocale, setLocaleCookie } = useI18n();
+const { locale, setLocale } = useI18n();
+const localeCookie = useCookie('locale');
+if (localeCookie.value) {
+  setLocale(localeCookie.value);
+}
+
 const switchLocale = (newLocale) => {
   setLocale(newLocale);
-  setLocaleCookie(newLocale);
+  localeCookie.value = newLocale;
 };
 </script>
 
