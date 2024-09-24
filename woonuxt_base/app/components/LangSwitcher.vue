@@ -4,6 +4,7 @@ const switchLocale = (newLocale) => {
   setLocale(newLocale);
   setLocaleCookie(newLocale);
 };
+
 </script>
 
 <template>
