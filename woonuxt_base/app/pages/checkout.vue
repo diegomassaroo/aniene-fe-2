@@ -151,7 +151,8 @@ useSeoMeta({
           <button
             class="mt-3.5 pt-3 pb-2.5 w-full bg-blue text-white hover:bg-black disabled:cursor-not-allowed disabled:bg-gray-300"
             :disabled="isCheckoutDisabled">
-            {{ buttonText }}<LoadingIcon v-if="isProcessingOrder" color="#fff" size="18" />
+            {{ buttonText }}
+            <!-- <LoadingIcon v-if="isProcessingOrder" color="#fff" size="18" /> -->
           </button>
         </OrderSummary>
       </form>
@@ -166,7 +167,7 @@ useSeoMeta({
 .checkout-form input[type='tel'],
 .checkout-form input[type='password'],
 .checkout-form .StripeElement {
-  @apply border-b border-black w-full py-0.5 outline-none;
+  @apply border-b border-black rounded-none w-full py-0.5 outline-none;
 }
 
 .checkout-form select {
