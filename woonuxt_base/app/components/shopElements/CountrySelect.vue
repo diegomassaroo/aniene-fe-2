@@ -17,7 +17,7 @@ function select(evt) {
 
 <template>
   <select :value="modelValue" @change="select" required class="h-[30px] text-body">
-    <option value="" disabled>Select a country</option>
+    <option value="" disabled>{{ $t('messages.billing.selectcountry') }}</option>
     <option v-for="country in countriesToShow" :key="country.code" :value="country.code">
       {{ country.name }}
     </option>

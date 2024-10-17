@@ -39,12 +39,12 @@
       </div>
 
       <div class="w-full">
-        <label for="billing-state">{{ $t('messages.billing.state') }} ({{ $t('messages.general.optional') }})</label>
+        <label for="billing-state">{{ $t('messages.billing.selectstate') }} ({{ $t('messages.general.optional') }})</label>
         <StateSelect id="billing-state" v-model="customer.billing.state" :default-value="customer.billing.state" :country-code="customer.billing.country" />
       </div>
 
       <div class="w-full">
-        <label for="billing-country">{{ $t('messages.billing.country') }}</label>
+        <label for="billing-country">{{ $t('messages.billing.selectcountry') }}</label>
         <CountrySelect id="billing-country" v-model="customer.billing.country" :default-value="customer.billing.country" />
       </div>
 
@@ -103,12 +103,12 @@
       </div>
 
       <div class="w-full">
-        <label for="shipping-state">{{ $t('messages.billing.state') }} ({{ $t('messages.general.optional') }})</label>
+        <label for="shipping-state">{{ $t('messages.billing.selectstate') }} ({{ $t('messages.general.optional') }})</label>
         <StateSelect id="shipping-state" v-model="customer.shipping.state" :default-value="customer.shipping.state" :country-code="customer.shipping.country" />
       </div>
 
       <div class="w-full">
-        <label for="shipping-country">{{ $t('messages.billing.country') }}</label>
+        <label for="shipping-country">{{ $t('messages.billing.selectcountry') }}</label>
         <CountrySelect id="shipping-country" v-model="customer.shipping.country" :default-value="customer.shipping?.country" />
       </div>
 
