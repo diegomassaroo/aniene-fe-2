@@ -50,97 +50,101 @@ export function useCheckout() {
     });
   }
 
-  const proccessCheckout = async (isPaid = false) => {
-    const { customer, loginUser } = useAuth();
-    const router = useRouter();
-    const { replaceQueryParam } = useHelpers();
-    const { emptyCart, refreshCart } = useCart();
+  
+const processCheckout = async (isPaid = false): Promise<any> => {
+  const { customer, loginUser } = useAuth();
+  const router = useRouter();
+  const { replaceQueryParam } = useHelpers();
+  const { cart, emptyCart, refreshCart } = useCart();
 
-    isProcessingOrder.value = true;
+  isProcessingOrder.value = true;
 
-    const { username, password, shipToDifferentAddress } = orderInput.value;
-    const billing = customer.value?.billing;
-    const shipping = shipToDifferentAddress ? customer.value?.shipping : billing;
+  const { username, password, shipToDifferentAddress } = orderInput.value;
+  const billing = customer.value?.billing;
+  const shipping = shipToDifferentAddress
+    ? customer.value?.shipping
+    : billing;
+  const shippingMethod = cart.value?.chosenShippingMethods;
 
-    try {
-      let checkoutPayload: CheckoutInput = {
-        billing,
-        shipping,
-        metaData: orderInput.value.metaData,
-        paymentMethod: orderInput.value.paymentMethod.id,
-        customerNote: orderInput.value.customerNote,
-        shipToDifferentAddress,
-        transactionId: orderInput.value.transactionId,
-        isPaid,
-      };
+  try {
+    let checkoutPayload: CheckoutInput = {
+      billing,
+      shipping,
+      shippingMethod,
+      metaData: orderInput.value.metaData,
+      paymentMethod: orderInput.value.paymentMethod.id,
+      customerNote: orderInput.value.customerNote,
+      shipToDifferentAddress,
+      transactionId: orderInput.value.transactionId,
+      isPaid,
+    };
 
-      // Create account
-      // if (orderInput.value.createAccount) {
-      //   checkoutPayload.account = { username, password } as CreateAccountInput;
-      // }
+    const { checkout } = await GqlCheckout(checkoutPayload);
 
-      const { checkout } = await GqlCheckout(checkoutPayload);
+    const orderId = checkout?.order?.databaseId;
+    const orderKey = checkout?.order?.orderKey;
+    const orderInputPaymentId = orderInput.value.paymentMethod.id;
+    const isPayPal =
+      orderInputPaymentId === "paypal" ||
+      orderInputPaymentId === "ppcp-gateway";
 
-      // // Login user if account was created during checkout
-      // if (orderInput.value.createAccount) {
-      //   await loginUser({ username, password });
-      // }
+    // PayPal redirect
+    if ((await checkout?.redirect) && isPayPal) {
+      const frontEndUrl = window.location.origin;
+      let redirectUrl = checkout?.redirect ?? "";
+      const payPalReturnUrl = `${frontEndUrl}/checkout/order-received/${orderId}/?key=${orderKey}&from_paypal=true`;
+      const payPalCancelUrl = `${frontEndUrl}/checkout/?cancel_order=true&from_paypal=true`;
 
-      const orderId = checkout?.order?.databaseId;
-      const orderKey = checkout?.order?.orderKey;
-      const orderInputPaymentId = orderInput.value.paymentMethod.id;
-      const isPayPal = orderInputPaymentId === 'paypal' || orderInputPaymentId === 'ppcp-gateway';
+      redirectUrl = replaceQueryParam("return", payPalReturnUrl, redirectUrl);
+      redirectUrl = replaceQueryParam(
+        "cancel_return",
+        payPalCancelUrl,
+        redirectUrl
+      );
+      redirectUrl = replaceQueryParam("bn", "WooNuxt_Cart", redirectUrl);
 
-      // PayPal redirect
-      if ((await checkout?.redirect) && isPayPal) {
-        const frontEndUrl = window.location.origin;
-        let redirectUrl = checkout?.redirect ?? '';
+      // Store order info before redirecting
+      localStorage.setItem("pendingOrderId", orderId.toString());
+      localStorage.setItem("pendingOrderKey", orderKey);
 
-        const payPalReturnUrl = `${frontEndUrl}/checkout/order-received/${orderId}/?key=${orderKey}&from_paypal=true`;
-        const payPalCancelUrl = `${frontEndUrl}/checkout/?cancel_order=true&from_paypal=true`;
+      // Direct redirect instead of popup
+      window.location.href = redirectUrl;
+      return checkout;
+    } else {
+      router.push(`/checkout/order-received/${orderId}/?key=${orderKey}`);
+    }
 
-        redirectUrl = replaceQueryParam('return', payPalReturnUrl, redirectUrl);
-        redirectUrl = replaceQueryParam('cancel_return', payPalCancelUrl, redirectUrl);
-        redirectUrl = replaceQueryParam('bn', 'WooNuxt_Cart', redirectUrl);
+    if ((await checkout?.result) !== "success") {
+      alert("There was an error processing your order. Please try again.");
+      window.location.reload();
+      return checkout;
+    } else {
+      await emptyCart();
+      await refreshCart();
+    }
+  } catch (error: any) {
+    const errorMessage = error?.gqlErrors?.[0].message;
 
-        const isPayPalWindowClosed = await openPayPalWindow(redirectUrl);
-
-        if (isPayPalWindowClosed) {
-          router.push(`/checkout/order-received/${orderId}/?key=${orderKey}&fetch_delay=true`);
-        }
-      } else {
-        router.push(`/checkout/order-received/${orderId}/?key=${orderKey}`);
-      }
-
-      if ((await checkout?.result) !== 'success') {
-        alert('There was an error processing your order. Please try again.');
-        window.location.reload();
-        return checkout;
-      } else {
-        await emptyCart();
-        await refreshCart();
-      }
-    } catch (error: any) {
-      isProcessingOrder.value = false;
-
-      const errorMessage = error?.gqlErrors?.[0].message;
-
-      if (errorMessage?.includes('An account is already registered with your email address')) {
-        alert('An account is already registered with your email address');
-        return null;
-      }
-
-      alert(errorMessage);
+    if (
+      errorMessage?.includes(
+        "An account is already registered with your email address"
+      )
+    ) {
+      alert("An account is already registered with your email address");
       return null;
     }
 
+    alert(errorMessage);
+    return null;
+  } finally {
     isProcessingOrder.value = false;
-  };
+  }
+};
 
   return {
     orderInput,
     isProcessingOrder,
-    proccessCheckout,
+    processCheckout,
     updateShippingLocation,
   };
 }
