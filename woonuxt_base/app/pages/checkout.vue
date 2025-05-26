@@ -1,78 +1,77 @@
 <script setup lang="ts">
 import { loadStripe } from '@stripe/stripe-js';
-import type { Stripe, StripeElements, CreateSourceData, StripeCardElement } from '@stripe/stripe-js';
-
-const { t } = useI18n();
-const route = useRoute();
-const { query } = useRoute();
-const { cart, isUpdatingCart, paymentGateways } = useCart();
-const { customer, viewer } = useAuth();
-const { orderInput, isProcessingOrder, processCheckout } = useCheckout();
-const runtimeConfig = useRuntimeConfig();
-const stripeKey = runtimeConfig.public?.STRIPE_PUBLISHABLE_KEY || null;
-
-const buttonText = ref<string>(isProcessingOrder.value ? t('messages.general.processing') : t('messages.shop.checkoutButton'));
-const isCheckoutDisabled = computed<boolean>(() => isProcessingOrder.value || isUpdatingCart.value || !orderInput.value.paymentMethod);
-
-const isInvalidEmail = ref<boolean>(false);
-const stripe: Stripe | null = stripeKey ? await loadStripe(stripeKey) : null;
-const elements = ref();
-const isPaid = ref<boolean>(false);
-
-onBeforeMount(async () => {
-  if (query.cancel_order) window.close();
-});
-
-const payNow = async () => {
-  buttonText.value = t('messages.general.processing');
-
-  const { stripePaymentIntent } = await GqlGetStripePaymentIntent();
-  const clientSecret = stripePaymentIntent?.clientSecret || '';
-
-  try {
-    if (orderInput.value.paymentMethod.id === 'stripe' && stripe && elements.value) {
-      const cardElement = elements.value.getElement('card') as StripeCardElement;
-      const { setupIntent } = await stripe.confirmCardSetup(clientSecret, { payment_method: { card: cardElement } });
-      const { source } = await stripe.createSource(cardElement as CreateSourceData);
-
-      if (source) orderInput.value.metaData.push({ key: '_stripe_source_id', value: source.id });
-      if (setupIntent) orderInput.value.metaData.push({ key: '_stripe_intent_id', value: setupIntent.id });
-
-      isPaid.value = setupIntent?.status === 'succeeded' || false;
-      orderInput.value.transactionId = source?.created?.toString() || new Date().getTime().toString();
-    }
-  } catch (error) {
-    console.error(error);
-    buttonText.value = t('messages.shop.placeOrder');
-  }
-
-  processCheckout(isPaid.value);
-};
-
-const handleStripeElement = (stripeElements: StripeElements): void => {
-  elements.value = stripeElements;
-};
-
-const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-const checkEmailOnBlur = (email?: string | null): void => {
-  if (email) isInvalidEmail.value = !emailRegex.test(email);
-};
-
-const checkEmailOnInput = (email?: string | null): void => {
-  if (email && isInvalidEmail.value) isInvalidEmail.value = !emailRegex.test(email);
-};
-
-useSeoMeta({
-  title: t('messages.shop.checkout'),
-});
-
-onMounted(() => {
-	if (route.query.from_paypal === 'true') {
-    localStorage.removeItem('checkoutInProgress');
-    localStorage.removeItem('checkoutTimestamp');
-  }
-})
+ 
+ const { t } = useI18n();
+ const { query } = useRoute();
+ const route = useRoute();
+ const { cart, isUpdatingCart, paymentGateways } = useCart();
+ const { customer, viewer } = useAuth();
+ const { orderInput, isProcessingOrder, processCheckout } = useCheckout();
+ const runtimeConfig = useRuntimeConfig();
+ const stripeKey = runtimeConfig.public?.STRIPE_PUBLISHABLE_KEY || null;
+  
+ const buttonText = ref<string>(isProcessingOrder.value ? t('messages.general.processing') : t('messages.shop.checkoutButton'));
+ const isCheckoutDisabled = computed<boolean>(() => isProcessingOrder.value || isUpdatingCart.value || !orderInput.value.paymentMethod);
+  
+ const isInvalidEmail = ref<boolean>(false);
+ const stripe = stripeKey ? await loadStripe(stripeKey) : null;
+ let elements = ref(null);
+ const isPaid = ref<boolean>(false);
+  
+ onBeforeMount(async () => {
+   if (query.cancel_order) window.close();
+ });
+  
+ const payNow = async () => {
+   buttonText.value = t('messages.general.processing');
+  
+   const { stripePaymentIntent } = await GqlGetStripePaymentIntent();
+   const { clientSecret } = stripePaymentIntent;
+  
+   try {
+     if (orderInput.value.paymentMethod.id === 'stripe') {
+       const cardElement = elements.value.getElement('card');
+       const { setupIntent } = await stripe.confirmCardSetup(clientSecret, { payment_method: { card: cardElement } });
+       const { source } = await stripe.createSource(cardElement);
+  
+       if (source) orderInput.value.metaData.push({ key: '_stripe_source_id', value: source.id });
+       if (setupIntent) orderInput.value.metaData.push({ key: '_stripe_intent_id', value: setupIntent.id });
+  
+       isPaid.value = setupIntent?.status === 'succeeded' || false;
+       orderInput.value.transactionId = source?.created?.toString() || new Date().getTime().toString();
+     }
+   } catch (error) {
+     console.error(error);
+     buttonText.value = t('messages.shop.placeOrder');
+   }
+  
+   processCheckout(isPaid.value);
+ };
+  
+ const handleStripeElement = (stripeElements) => {
+   elements.value = stripeElements;
+ };
+  
+ const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  
+ const checkEmailOnBlur = (email) => {
+   if (email) isInvalidEmail.value = !emailRegex.test(email);
+ };
+  
+ const checkEmailOnInput = (email) => {
+   if (email && isInvalidEmail.value) isInvalidEmail.value = !emailRegex.test(email);
+ };
+  
+ useSeoMeta({
+   title: t('messages.shop.checkout'),
+ });
+  
+ onMounted(() => {
+   if (route.query.from_paypal === 'true') {
+     localStorage.removeItem('checkoutInProgress');
+     localStorage.removeItem('checkoutTimestamp');
+   }
+ })
 </script>
 
 <template>
