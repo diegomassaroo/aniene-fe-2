@@ -115,6 +115,7 @@ const disabledAddToCart = computed(() => {
             </div>
           </div>
 
+
           <div class="mb-8 font-light prose" v-html="product.shortDescription || product.description" />
 
           <hr />
